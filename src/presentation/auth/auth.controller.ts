@@ -1,4 +1,3 @@
-// auth/auth.controller.ts
 import { Controller, Post, Body, UseGuards, Request, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../../application/auth/auth.service';
 import { JwtAuthGuard } from '../../common/guards/jwt_auth.guard';

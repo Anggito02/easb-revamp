@@ -1,4 +1,3 @@
-// common/middleware/request-logger.middleware.ts
 import { Request, Response, NextFunction } from 'express';
 import pino from 'pino';
 

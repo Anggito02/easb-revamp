@@ -1,4 +1,3 @@
-// infrastructure/asb/repositories/asb.repository.impl.ts
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToInstance } from 'class-transformer';

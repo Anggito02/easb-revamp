@@ -1,4 +1,3 @@
-// infrastructure/asb/orm/asb.orm-entity.ts
 import {
     Entity,
     PrimaryGeneratedColumn,
