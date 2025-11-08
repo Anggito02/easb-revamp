@@ -5,7 +5,6 @@ import { ResponseDto } from 'src/common/dto/response.dto';
 import { LoginDto } from './dto/login.dto';
 import { Public } from 'src/common/decorators/public.decorator';
 import { RefreshJwtAuthGuard } from 'src/common/guards/jwt_refresh.guard';
-import { Throttle } from '@nestjs/throttler';
 
 @Controller('auth')
 export class AuthController {
@@ -18,11 +17,11 @@ export class AuthController {
         const token = await this.authService.login(user);
 
         // SET refresh token via HttpOnly cookie
-        res.cookie('refresh_token', token.refreshToken, {
+        res.cookie('refreshToken', token.refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
-            path: '/auth',
+            path: '/api/dev/v1/auth',
             maxAge: token.maxAgeRefresh, // <- gunakan ms dari service
         });
 
@@ -47,7 +46,7 @@ export class AuthController {
             httpOnly: true, 
             secure: process.env.NODE_ENV === 'production', 
             sameSite: 'strict', 
-            path: '/auth',
+            path: '/api/dev/v1/auth',
             maxAge: tokens.maxAgeRefresh,
         });
 
@@ -56,7 +55,7 @@ export class AuthController {
 
     @Post('logout')
     async logout(@Res({ passthrough: true }) res: Response): Promise<ResponseDto> {
-        res.clearCookie('refreshToken', { path: '/auth' });
+        res.clearCookie('refreshToken', { path: '/api/dev/v1/auth' });
         return { status: 'success', responseCode: 200, message: 'Logged out', data: null };
     }
 }

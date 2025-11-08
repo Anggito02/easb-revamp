@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { ConfigService } from '@nestjs/config';
@@ -23,7 +23,11 @@ export class RefreshJwtStrategy extends PassportStrategy(Strategy, 'jwt-refresh'
     }
 
     async validate(req: Request, payload: any) {
-        const token = req?.cookies?.refresh_token || req.headers.authorization?.split(' ')[1];
+
+        const cookieToken = req?.cookies?.refreshToken;
+        console.log('Validating refresh token. Payload:', payload, 'Cookie token:', cookieToken);
+
+        const token = req?.cookies?.refreshToken || req.headers.authorization?.split(' ')[1];
 
         if (!token) throw new UnauthorizedException('Missing refresh token');
 
