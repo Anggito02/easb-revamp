@@ -24,7 +24,7 @@ import { UserModule } from './presentation/users/user.module';
                 username: config.get('db.username'),
                 password: config.get('db.password'),
                 database: config.get('db.name'),
-                entities: [__dirname + '/infrastructure/**/orm/*.orm-entity{.ts,.js}'],
+                entities: [__dirname + '/infrastructure/**/orm/*.orm_entity{.ts,.js}'],
                 synchronize: false, // always false in production
                 migrationsRun: true,
                 migrations: [__dirname + '/migrations/*{.ts,.js}'],

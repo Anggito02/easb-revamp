@@ -1,8 +1,8 @@
+import { Role } from "./user_role.enum";
+
 export class User {
-    constructor(
-        public id: number | null,
-        public username: string,
-        public passwordHash: string,
-        public roles: string[],
-    ) {}
+  id!: number | string;
+  username!: string;
+  passwordHash?: string; // jangan expose keluar layer
+  roles!: Role[];
 }

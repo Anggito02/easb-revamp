@@ -1,28 +1,22 @@
+import { Role } from 'src/domain/user/user_role.enum';
+
 import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    CreateDateColumn,
-    UpdateDateColumn,
 } from 'typeorm';
 
 @Entity({ name: 'users' })
 export class UserOrmEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn('increment')
+  id!: number;
 
-    @Column({ unique: true })
-    username: string;
+  @Column({ unique: true })
+  username!: string;
 
-    @Column()
-    passwordHash: string;
+  @Column({ name: 'password_hash' })
+  passwordHash!: string;
 
-    @Column('text', { array: true })
-    roles: string[];
-
-    @CreateDateColumn({ type: 'timestamptz' })
-    createdAt: Date;
-
-    @UpdateDateColumn({ type: 'timestamptz' })
-    updatedAt: Date;
+  @Column('simple-array', { default: '' })
+  roles!: Role[]; // simpan sebagai 'admin,superadmin' dsb.
 }

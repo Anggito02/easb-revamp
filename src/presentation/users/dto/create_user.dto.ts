@@ -1,14 +1,18 @@
-import { IsString, IsNotEmpty, MinLength, IsArray } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsString, IsNotEmpty, MinLength, IsArray, ArrayNotEmpty, IsEnum } from 'class-validator';
+import { Role } from 'src/domain/user/user_role.enum';
 
 export class CreateUserDto {
   @IsString()
-  @IsNotEmpty()
-  username: string;
+  @Transform(({ value }) => value?.trim())
+  username!: string;
 
   @IsString()
   @MinLength(6)
-  password: string;
+  password!: string;
 
   @IsArray()
-  roles: string[];
+  @ArrayNotEmpty()
+  @IsEnum(Role, { each: true })
+  roles!: Role[];
 }

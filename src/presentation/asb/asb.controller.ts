@@ -8,11 +8,4 @@ import { Roles } from '../../common/decorators/roles.decorator';
 @Controller('asb')
 export class AsbController {
     constructor(private readonly asbService: AsbService) {}
-
-    @UseGuards(JwtAuthGuard, RolesGuard)
-    @Roles('operator')
-    @Post()
-    async create(@Body() dto: CreateAsbDto) {
-        return this.asbService.create(dto);
-    }
 }

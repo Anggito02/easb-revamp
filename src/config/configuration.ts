@@ -8,7 +8,9 @@ export default () => ({
         name: process.env.DB_NAME,
     },
     jwt: {
-        secret: process.env.JWT_SECRET,
-        expiresIn: process.env.JWT_EXPIRESIN || '3600s',
+        accessSecret: process.env.JWT_ACCESS_SECRET,
+        refreshSecret: process.env.JWT_REFRESH_SECRET,
+        accessTtl: process.env.JWT_ACCESS_TTL || '1800',
+        refreshTtl: process.env.JWT_REFRESH_TTL || '86400',
     },
 });
