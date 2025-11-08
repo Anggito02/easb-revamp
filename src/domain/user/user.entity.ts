@@ -5,4 +5,5 @@ export class User {
   username!: string;
   passwordHash?: string; // jangan expose keluar layer
   roles!: Role[];
+  refreshTokenVersion!: number;
 }

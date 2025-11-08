@@ -15,6 +15,9 @@ export class UserOrmEntity {
   @Column('text', { array: true, default: () => "'{}'" })
   roles!: Role[];
 
+  @Column({ name: 'refresh_token_version', type: 'int', default: 0 })
+  refreshTokenVersion!: number;
+
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
   createdAt!: Date;
 

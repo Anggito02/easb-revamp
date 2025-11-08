@@ -18,11 +18,11 @@ export class UserRepositoryImpl implements UserRepository {
 
     async findByUsername(username: string): Promise<User | null> {
         const u = await this.repo.findOne({ where: { username } });
-        return u ? ({ id: u.id, username: u.username, passwordHash: u.passwordHash, roles: u.roles }) : null;
+        return u ? ({ id: u.id, username: u.username, passwordHash: u.passwordHash, roles: u.roles, refreshTokenVersion: u.refreshTokenVersion }) : null;
     }
 
     async findById(id: number): Promise<User | null> {
         const u = await this.repo.findOne({ where: { id } });
-        return u ? ({ id: u.id, username: u.username, passwordHash: u.passwordHash, roles: u.roles }) : null;
+        return u ? ({ id: u.id, username: u.username, passwordHash: u.passwordHash, roles: u.roles, refreshTokenVersion: u.refreshTokenVersion }) : null;
     }
 }

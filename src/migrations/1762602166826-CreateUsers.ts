@@ -10,6 +10,7 @@ export class CreateUsers1762602166826 implements MigrationInterface {
         "username" VARCHAR(50) NOT NULL UNIQUE,
         "password_hash" VARCHAR(255) NOT NULL,
         "roles" TEXT[] NOT NULL DEFAULT '{}',
+        "refresh_token_version" INT NOT NULL DEFAULT 0,
         "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
         "updated_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
         "deleted_at" TIMESTAMPTZ NULL

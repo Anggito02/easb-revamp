@@ -30,7 +30,13 @@ export class AuthService {
     }
 
     private signRefresh(user: User): string {
-        const payload = { sub: String(user.id), username: user.username, roles: user.roles };
+        const payload = { 
+            sub: String(user.id), 
+            username: user.username, 
+            roles: user.roles,
+            tokenVersion: user.refreshTokenVersion ?? 0,
+         };
+
         return this.jwt.sign(payload, {
         secret: this.config.getOrThrow<string>('jwt.refreshSecret'),
         expiresIn: this.config.getOrThrow<number>('jwt.refreshTtl'), // e.g. "7d"
