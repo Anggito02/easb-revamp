@@ -1,22 +1,26 @@
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from 'typeorm';
 import { Role } from 'src/domain/user/user_role.enum';
-
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-} from 'typeorm';
 
 @Entity({ name: 'users' })
 export class UserOrmEntity {
   @PrimaryGeneratedColumn('increment')
   id!: number;
 
-  @Column({ unique: true })
+  @Column({ unique: true, length: 50 })
   username!: string;
 
-  @Column({ name: 'password_hash' })
+  @Column({ name: 'password_hash', length: 255 })
   passwordHash!: string;
+  
+  @Column('text', { array: true, default: () => "'{}'" })
+  roles!: Role[];
 
-  @Column('simple-array', { default: '' })
-  roles!: Role[]; // simpan sebagai 'admin,superadmin' dsb.
+  @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
+  createdAt!: Date;
+
+  @UpdateDateColumn({ name: 'updated_at', type: 'timestamptz' })
+  updatedAt!: Date;
+
+  @DeleteDateColumn({ name: 'deleted_at', type: 'timestamptz', nullable: true })
+  deletedAt!: Date | null;
 }
